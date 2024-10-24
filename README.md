@@ -1,1 +1,1 @@
-# invertory-app
+# inventory-app
