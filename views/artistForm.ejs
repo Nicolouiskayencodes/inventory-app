@@ -6,6 +6,7 @@
   <title>New Artist</title>
 </head>
 <body>
+  <%- include("errors.ejs") %>
   <form method="POST" action="/newArtist">
     <label>Artist Name: 
        <input name="artistname" type="text" required/>

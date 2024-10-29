@@ -6,6 +6,7 @@
   <title>New Art Type</title>
 </head>
 <body>
+  <%- include("errors.ejs") %>
   <form method="POST" action="/newType">
     <label>Art Type: 
        <input name="typename" type="text" required/>
