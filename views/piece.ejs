@@ -1,0 +1,18 @@
+<li>
+  <% if (image!==null) { %>
+    <img src=<%= image %>/>
+  <%}%>
+  <h2><%= title%></h2>
+  <% if (artist) { %>
+    <p>Artist: <%= artist %></p>
+  <% } %>
+  <% if (created!==null) { %>
+    <p>Created on <%= created %></p>
+  <% } %>
+  <% if (price !==null) { %>
+    <p>Price: $<%= price %></p>
+  <%}%>
+  <% if (type) { %>
+    <p>Medium: <%= type %></p>
+  <% }%>
+</li>

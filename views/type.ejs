@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= type_name%></title>
+</head>
+<body>
+  <h1><%=type_name%></h1>
+  <p><%= type_description %></p>
+  <ul>
+    <% artList.forEach(piece => { %>
+      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: null})%>
+      <% }); %>
+  </ul>
+</body>
+</html>
