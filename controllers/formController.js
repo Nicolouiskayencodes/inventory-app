@@ -17,6 +17,9 @@ const validateType = [
   .optional({ values: "falsy" })
   .isString().withMessage(`Description must be letters, numbers, and punctuation.`)
 ]
+const validateArt = [
+  body('name').trim()
+]
 
 const artistForm = (req, res) => {
   res.render('artistForm')
@@ -35,11 +38,6 @@ const createArtist = [
     res.redirect('/');
   }
 ]
-// async function createArtist (req, res) {
-//   const artistname = req.body.artistname;
-//   await db.createArtist(artistname);
-//   res.redirect('/');
-// }
 const typeForm = (req, res) => {
   res.render('typeForm')
 }
@@ -59,11 +57,32 @@ const createType = [
     res.redirect('/')
   }
 ]
-// async function createType(req, res) {
-//   const typename = req.body.typename;
-//   const description = req.body.description;
-//   await db.createType(typename, description);
-//   res.redirect('/')
-// }
 
-module.exports = {artistForm, createArtist, typeForm, createType}
+async function artForm(req, res) {
+  const artists = await db.getAllArtists();
+  const types = await db.getAllTypes();
+  console.log(artists, types)
+  res.render('artForm', {artists: artists, types: types})
+}
+
+const createArt = [
+  validateArt,
+  async function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("typeForm", {
+        errors: errors.array(),
+      });
+    }
+  const name = req.body.name;
+  const created = req.body.created;
+  const price = req.body.price;
+  const image = req.body.image;
+  const artistid = req.body.artistid;
+  const typeid = req.body.typeid;
+  await db.createArt(name, created, price, image, artistid, typeid);
+  res.redirect('/')
+  }
+]
+
+module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt}

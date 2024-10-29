@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Art Piece</title>
+</head>
+<body>
+  <%- include("errors.ejs") %>
+  <form method="POST" action="/newArt">
+    <label>Name: 
+      <input name="name" type="text" required>
+    </label>
+    <label>Artist: 
+      <select name="artistid">
+        <% artists.forEach(artist => { %>
+          <option value=<%=artist.id%>><%=artist.artist_name%></option>
+        <% }); %>
+      </select>
+    </label>
+    <label>Art type: 
+      <select name="typeid">
+        <% types.forEach(type => { %>
+          <option value=<%=type.id%>><%=type.type_name%></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Created: 
+      <input name="created" type="date">
+    </label>
+    <label>Price: 
+      <input name="price" type="number">
+    </label>
+    <label>Image link: 
+      <input name="image" type="text">
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

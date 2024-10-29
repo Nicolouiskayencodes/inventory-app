@@ -21,7 +21,20 @@ async function createArtist(name) {
 
 async function createType(name, description) {
   await pool.query(`INSERT INTO art_types (type_name, description) VALUES ('${name}', '${description}');`)
-  
 }
 
-module.exports = {getAll, getArtist, getType, createArtist, createType}
+async function getAllArtists() {
+  const { rows } = await pool.query('SELECT * FROM artists');
+  return rows;
+}
+
+async function getAllTypes() {
+  const { rows } = await pool.query('SELECT * FROM art_types');
+  return rows;
+}
+
+async function createArt(name, created, price, image, artistid, typeid) {
+  await pool.query(`INSERT INTO art (art_name, created, price, image, typeid, artistid) VALUES ('${name}', '${created}', '${price}', '${image}', '${typeid}', '${artistid}')`)
+}
+
+module.exports = {getAll, getArtist, getType, createArtist, createType, getAllArtists, getAllTypes, createArt}
