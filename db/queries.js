@@ -34,7 +34,19 @@ async function getAllTypes() {
 }
 
 async function createArt(name, created, price, image, artistid, typeid) {
-  await pool.query(`INSERT INTO art (art_name, created, price, image, typeid, artistid) VALUES ('${name}', '${created}', '${price}', '${image}', '${typeid}', '${artistid}')`)
+  let valimage = null;
+  let valcreated = null;
+  let valprice = null;
+  if (image!=='') {
+    valimage = image
+  }
+  if (created !==''){
+    valcreated = created
+  }
+  if (price !==''){
+    valprice = price
+  }
+  await pool.query(`INSERT INTO art (art_name, created, price, image, typeid, artistid) VALUES ('${name}', ${valcreated}, ${valprice}, ${valimage}, '${typeid}', '${artistid}');`)
 }
 
 module.exports = {getAll, getArtist, getType, createArtist, createType, getAllArtists, getAllTypes, createArt}

@@ -80,8 +80,10 @@ const createArt = [
   async function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      const artists = await db.getAllArtists();
+  const types = await db.getAllTypes();
       return res.status(400).render("artForm", {
-        errors: errors.array(),
+        errors: errors.array(), artists: artists, types: types,
       });
     }
   const name = req.body.name;

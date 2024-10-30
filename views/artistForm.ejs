@@ -6,6 +6,11 @@
   <title>New Artist</title>
 </head>
 <body>
+  <nav>
+    <button><a href="/">Home</a></button>
+    <button><a href="/newArt">Add Art</a></button>
+    <button><a href="/newType">Add Artistic Medium</a></button>
+  </nav>
   <%- include("errors.ejs") %>
   <form method="POST" action="/newArtist">
     <label>Artist Name: 
