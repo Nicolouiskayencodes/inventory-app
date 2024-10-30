@@ -93,8 +93,39 @@ const createArt = [
   const artistid = req.body.artistid;
   const typeid = req.body.typeid;
   await db.createArt(name, created, price, image, artistid, typeid);
-  res.redirect('/')
+  res.redirect('/');
   }
 ]
 
-module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt}
+async function updateForm(req, res) {
+  const art_piece = await db.getArt(req.params.id)
+  const artists = await db.getAllArtists();
+  const types = await db.getAllTypes();
+  console.log(art_piece)
+  res.render('updateForm', {piece:art_piece[0], artists: artists, types: types})
+}
+
+const updatePiece = [
+  validateArt,
+  async function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const artists = await db.getAllArtists();
+  const types = await db.getAllTypes();
+      return res.status(400).render("artForm", {
+        errors: errors.array(), artists: artists, types: types,
+      });
+    }
+  const art_id = req.params.id;
+  const name = req.body.name;
+  const created = req.body.created;
+  const price = req.body.price;
+  const image = req.body.image;
+  const artistid = req.body.artistid;
+  const typeid = req.body.typeid;
+  await db.updateArt(art_id, name, created, price, image, artistid, typeid);
+  res.redirect('/');
+  }
+]
+
+module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt, updateForm, updatePiece}

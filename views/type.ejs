@@ -11,7 +11,7 @@
   <p><%= type_description %></p>
   <ul>
     <% artList.forEach(piece => { %>
-      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: null, artistid: piece.artistid, typeid: piece.typeid})%>
+      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: null, artistid: piece.artistid, typeid: piece.typeid, id: piece.art_id})%>
       <% }); %>
   </ul>
 </body>

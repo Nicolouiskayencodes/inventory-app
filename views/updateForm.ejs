@@ -3,41 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Art Piece</title>
+  <title>Update <% piece.art_name%></title>
 </head>
 <body>
+  <p><% piece %></p>
   <nav>
     <button><a href="/">Home</a></button>
     <button><a href="/newArtist">Add Artist</a></button>
     <button><a href="/newType">Add Artistic Medium</a></button>
   </nav>
   <%- include("errors.ejs") %>
-  <form method="POST" action="/newArt">
+  <form method="POST" action="/update/<%= piece.art_id %>">
     <label>Name: 
-      <input name="name" type="text" required>
+      <input name="name" type="text" value="<%= piece.art_name %>" required>
     </label>
     <label>Artist: 
       <select name="artistid">
         <% artists.forEach(artist => { %>
+          <% if (piece.artistid === artist.artistid) { %>
+            <option value=<%=artist.artistid%> selected='selected'><%=artist.artist_name%></option>
+         <% } else {%>
           <option value=<%=artist.artistid%>><%=artist.artist_name%></option>
-        <% }); %>
+        <% }}); %>
       </select>
     </label>
     <label>Art type: 
       <select name="typeid">
         <% types.forEach(type => { %>
-          <option value=<%=type.typeid%>><%=type.type_name%></option>
-        <% }) %>
+          <% if (piece.typeid === type.typeid) { %>
+            <option value=<%=type.typeid%> selected='selected'><%=type.type_name%></option>
+          <% }  else {%>
+            <option value=<%=type.typeid%>><%=type.type_name%></option>
+        <% }}) %>
       </select>
     </label>
     <label>Created: 
-      <input name="created" type="date">
+      <input name="created" type="date" value="<%= piece.created %>">
     </label>
     <label>Price: 
-      <input name="price" type="number">
+      <input name="price" type="number" value="<%= piece.price %>">
     </label>
     <label>Image link: 
-      <input name="image" type="text">
+      <input name="image" type="text" value="<%= piece.image %>">
     </label>
     <button type="submit">Submit</button>
   </form>

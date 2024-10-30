@@ -12,5 +12,7 @@ router.get('/newType', formController.typeForm);
 router.post('/newType', formController.createType);
 router.get('/newArt', formController.artForm);
 router.post('/newArt', formController.createArt);
+router.get('/update/:id', formController.updateForm)
+router.post('/update/:id', formController.updatePiece)
 
 module.exports = router;
