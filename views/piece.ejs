@@ -4,15 +4,15 @@
   <%}%>
   <h2><%= title%></h2>
   <% if (artist) { %>
-    <p>Artist: <%= artist %></p>
+    <p>Artist: <a href='/artist/<%= artistid%>'><%= artist %></a></p>
   <% } %>
   <% if (created!==null) { %>
-    <p>Created on <%= created %></p>
+    <p>Created on <%= created.toDateString() %></p>
   <% } %>
   <% if (price !==null) { %>
     <p>Price: $<%= price %></p>
   <%}%>
   <% if (type) { %>
-    <p>Medium: <%= type %></p>
+    <p>Medium: <a href="/type/<%= typeid%>"><%= type %></a></p>
   <% }%>
 </li>

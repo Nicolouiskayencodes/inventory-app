@@ -14,11 +14,21 @@ const validateType = [
     .isAlpha('en-US', {ignore: '\s'}).withMessage(`Type name ${alphaErr}`)
     .isLength({min: 1, max: 30}).withMessage(`Type name ${lengthErr}`),
   body('description').trim()
-  .optional({ values: "falsy" })
-  .isString().withMessage(`Description must be letters, numbers, and punctuation.`)
+    .optional({ values: "falsy" })
+    .isString().withMessage(`Description must be letters, numbers, and punctuation.`)
 ]
 const validateArt = [
   body('name').trim()
+    .isAlpha('en-US', {ignore: '\s'}).withMessage(`Name ${alphaErr}`)
+    .isLength({min: 1, max: 30}).withMessage(`Name ${lengthErr}`),
+  body('created').trim()
+    .optional({values: 'falsy'})
+    .isDate().withMessage('Date created must be in date format'),
+  body('price').trim()
+    .optional({values: 'falsy'})
+    .isNumeric({min: 0}).withMessage('Price must contain only positive numbers'),
+  body('image').trim()
+    .optional({values: 'falsy'})
 ]
 
 const artistForm = (req, res) => {
@@ -70,7 +80,7 @@ const createArt = [
   async function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("typeForm", {
+      return res.status(400).render("artForm", {
         errors: errors.array(),
       });
     }

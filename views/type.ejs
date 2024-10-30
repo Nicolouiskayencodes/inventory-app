@@ -6,11 +6,12 @@
   <title><%= type_name%></title>
 </head>
 <body>
+  <a href="/">Home</a>
   <h1><%=type_name%></h1>
   <p><%= type_description %></p>
   <ul>
     <% artList.forEach(piece => { %>
-      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: null})%>
+      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: null, artistid: piece.artistid, typeid: piece.typeid})%>
       <% }); %>
   </ul>
 </body>

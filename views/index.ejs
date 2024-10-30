@@ -6,9 +6,14 @@
   <title>Art Gallery</title>
 </head>
 <body>
+  <nav>
+    <button><a href="/newArt">Add Art</a></button>
+    <button><a href="/newArtist">Add Artist</a></button>
+    <button><a href="/newType">Add Artistic Medium</a></button>
+  </nav>
   <ul>
     <% artList.forEach(piece => { %>
-      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: piece.type_name})%>
+      <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: piece.type_name, artistid: piece.artistid, typeid: piece.typeid})%>
       
     <% }); %>
   </ul>
