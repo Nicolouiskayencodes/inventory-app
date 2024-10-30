@@ -69,5 +69,8 @@ async function updateArt(art_id, name, created, price, image, artistid, typeid) 
   }
   await pool.query(`UPDATE art SET art_name = '${name}', created = ${valcreated}, price = ${valprice}, image = ${valimage}, artistid = '${artistid}', typeid = '${typeid}' WHERE art_id = ${art_id}`)
 }
+async function deleteArt(id) {
+  await pool.query(`DELETE FROM art WHERE art.art_id = ${id}`)
+}
 
-module.exports = {getAll, getArtist, getType, createArtist, createType, getAllArtists, getAllTypes, createArt, getArt, updateArt}
+module.exports = {getAll, getArtist, getType, createArtist, createType, getAllArtists, getAllTypes, createArt, getArt, updateArt, deleteArt}

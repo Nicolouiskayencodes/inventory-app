@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%=piece.art_name %></title>
+</head>
+<body>
+  <nav><button><a href="/">Home</a></button></nav>
+  <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: piece.type_name, artistid: piece.artistid, typeid: piece.typeid, id: piece.art_id})%>
+  <button><a href="/delete/<%=piece.art_id%>">Delete</a></button>
+</body>
+</html>

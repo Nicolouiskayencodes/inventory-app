@@ -14,5 +14,8 @@ router.get('/newArt', formController.artForm);
 router.post('/newArt', formController.createArt);
 router.get('/update/:id', formController.updateForm)
 router.post('/update/:id', formController.updatePiece)
+router.get('/open/:id', formController.openArt)
+router.get('/delete/:id', formController.deleteConfirm)
+router.post('/delete/:id', formController.deleteArt)
 
 module.exports = router;

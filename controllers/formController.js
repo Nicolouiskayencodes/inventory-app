@@ -31,6 +31,10 @@ const validateArt = [
     .optional({values: 'falsy'})
 ]
 
+const validatePassword = [
+  body('password').isString().matches(process.env.PASSWORD).withMessage('Password did not match')
+]
+
 const artistForm = (req, res) => {
   res.render('artistForm')
 }
@@ -128,4 +132,29 @@ const updatePiece = [
   }
 ]
 
-module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt, updateForm, updatePiece}
+async function openArt(req, res) {
+  const art_piece = await db.getArt(req.params.id)
+  res.render('open', {piece: art_piece[0]})
+}
+
+async function deleteConfirm(req, res) {
+  const art_piece = await db.getArt(req.params.id)
+  res.render('delete', {piece: art_piece[0]})
+}
+
+const deleteArt = [
+  validatePassword,
+  async function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const art_piece = await db.getArt(req.params.id)
+      return res.status(400).render("delete", {
+        errors: errors.array(), piece: art_piece[0]
+      });
+    }
+    await db.deleteArt(req.params.id)
+    res.redirect('/')
+  }
+]
+
+module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt, updateForm, updatePiece, openArt, deleteConfirm, deleteArt}

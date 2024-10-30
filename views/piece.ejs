@@ -2,7 +2,7 @@
   <% if (image!==null && image!=='') { %>
     <img src=<%= image %>/>
   <%}%>
-  <h2><%= title%></h2>
+  <a href="/open/<%= id %>"><h2><%= title%></h2></a>
   <% if (artist) { %>
     <p>Artist: <a href='/artist/<%= artistid%>'><%= artist %></a></p>
   <% } %>
