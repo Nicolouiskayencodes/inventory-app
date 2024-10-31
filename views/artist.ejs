@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
   <title><%=artList[0].artist_name%></title>
 </head>
 <body>
-  <a href="/">Home</a>
+  <nav><button><a href="/">Home</a></button></nav>
   <h1><%=artList[0].artist_name%></h1>
-  <button><a href="/deleteartist/<%= id %>">Delete <%=artist_name%></a></button>
+  <button class="delete"><a href="/deleteartist/<%= id %>">Delete <%=artist_name%></a></button>
   <% if (artList) {%>
   <ul>
     <% artList.forEach(piece => { %>

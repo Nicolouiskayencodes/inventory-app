@@ -1,4 +1,4 @@
-<li>
+<li class="piece">
   <% if (image!==null && image!=='') { %>
     <img src=<%= image %>/>
   <%}%>
@@ -19,5 +19,6 @@
   <% }%>
   <% if (id) {%>
   <button><a href='/update/<%= id%>'>Update</a></button>
+  <button><a href="/delete/<%=id%>">Delete</a></button>
   <% } %>
 </li>

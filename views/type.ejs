@@ -7,10 +7,10 @@
   <title><%= type_name%></title>
 </head>
 <body>
-  <a href="/">Home</a>
+  <nav><button><a href="/">Home</a></button></nav>
   <h1><%=type_name%></h1>
-  <p><%= type_description %></p>
-  <button><a href="/deletetype/<%= id %>">Delete <%=type_name%></a></button>
+  <p class="description"><%= type_description %></p>
+  <button class="delete"><a href="/deletetype/<%= id %>">Delete <%=type_name%></a></button>
   <% if (artList) { %>
   <ul>
     <% artList.forEach(piece => { %>

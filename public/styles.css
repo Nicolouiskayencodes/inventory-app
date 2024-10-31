@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+}
+nav {
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin: 0;
+  background-color: lightcoral;
+}
+
+button {
+  padding: 3px;
+
+}
+button:hover {
+  background-color: steelblue;
+
+}
+button a {
+  color: black;
+  text-decoration: none;
+}
+button a:visited {
+  color: black;
+}
+button a:hover {
+  color: white;
+}
+
+.dropbtn {
+  margin: 10px;
+  margin-bottom: 0;
+  background-color: navy;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: outset 2px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  margin-left: 10px;
+  display: none;
+  position: absolute;
+  background-color:white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px black;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: whitesmoke;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  border: inset 2px;
+  background-color: navy;
+}
+
+img {
+  height: auto;
+  width: 500px;
+}
+
+ul {
+  list-style: none;
+}
+li {
+  list-style: none;
+}
+
+.piece {
+  padding: 10px;
+  border: solid 1px black;
+  margin: 10px;
+  box-shadow: 5px 5px 5px 0px lightslategray;
+  border-radius: 5px;
+}
+
+a:visited {
+  color: blue;
+}
+
+form {
+  padding: 10x;
+  margin-left: 10px;
+}
+
+h1 {
+  padding: 10px;
+}
+.delete {
+  margin-left: 10px;
+}
+.description {
+  margin-left: 10px;
+}
