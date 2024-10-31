@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
   <title><%= type_name%></title>
 </head>
 <body>
   <a href="/">Home</a>
   <h1><%=type_name%></h1>
   <p><%= type_description %></p>
+  <button><a href="/deletetype/<%= id %>">Delete <%=type_name%></a></button>
+  <% if (artList) { %>
   <ul>
     <% artList.forEach(piece => { %>
       <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: null, artistid: piece.artistid, typeid: piece.typeid, id: piece.art_id})%>
       <% }); %>
   </ul>
+  <% } %>
 </body>
 </html>

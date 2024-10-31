@@ -17,5 +17,10 @@ router.post('/update/:id', formController.updatePiece)
 router.get('/open/:id', formController.openArt)
 router.get('/delete/:id', formController.deleteConfirm)
 router.post('/delete/:id', formController.deleteArt)
+router.get('/deleteartist/:id', formController.deleteArtistConfirm)
+router.post('/deleteartist/:id', formController.deleteArtist)
+router.get('/deletetype/:id', formController.deleteTypeConfirm)
+router.post('/deletetype/:id', formController.deleteType)
+
 
 module.exports = router;

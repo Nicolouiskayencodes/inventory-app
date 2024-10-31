@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delete <%=piece.art_name %></title>
+  <title>Delete <%=type.type_name %></title>
 </head>
 <body>
   <nav>
     <button><a href="/">Home</a></button>
-    <button><a href="/open/<%=piece.art_id%>">Back</a></button>
+    <button><a href="/type/<%=id%>">Back</a></button>
   </nav>
   <%- include("errors.ejs") %>
-  <form method="post" action="/delete/<%=piece.art_id %>">
-    <label>Enter password to delete art piece <%=piece.art_name %>
+  <form method="post" action="/deletetype/<%=id %>">
+    <label>Enter password to delete art type <%=type.type_name %>
       <input type="password" name="password">
     </label>
     <button type="submit">Delete</button>

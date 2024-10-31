@@ -1,17 +1,17 @@
 const pool = require('./pool');
 
 async function getAll() {
-  const { rows } = await pool.query("SELECT * FROM art JOIN artists ON art.artistid = artists.artistid JOIN art_types ON art.typeid = art_types.typeid")
+  const { rows } = await pool.query("SELECT * FROM art LEFT JOIN artists ON art.artistid = artists.artistid LEFT JOIN art_types ON art.typeid = art_types.typeid")
   return rows;
 }
 
 async function getArtist(id) {
-  const { rows } = await pool.query(`SELECT * FROM artists JOIN art ON artists.artistid = art.artistid JOIN art_types ON art_types.typeid = art.typeid WHERE artists.artistid = ${id}`)
+  const { rows } = await pool.query(`SELECT * FROM artists LEFT JOIN art ON artists.artistid = art.artistid LEFT JOIN art_types ON art_types.typeid = art.typeid WHERE artists.artistid = ${id}`)
   return rows;
 }
 
 async function getType(id) {
-  const {rows} = await pool.query(`SELECT * FROM art_types JOIN art ON art.typeid = art_types.typeid JOIN artists ON art.artistid = artists.artistid WHERE art_types.typeid = ${id}`)
+  const {rows} = await pool.query(`SELECT * FROM art_types LEFT JOIN art ON art.typeid = art_types.typeid LEFT JOIN artists ON art.artistid = artists.artistid WHERE art_types.typeid = ${id}`)
   return rows;
 }
 
@@ -50,7 +50,7 @@ async function createArt(name, created, price, image, artistid, typeid) {
 }
 
 async function getArt(id) {
-  const {rows} = await pool.query(`SELECT * FROM art JOIN artists ON artists.artistid = art.artistid JOIN art_types ON art_types.typeid = art.typeid WHERE art.art_id = ${id};`);
+  const {rows} = await pool.query(`SELECT * FROM art LEFT JOIN artists ON artists.artistid = art.artistid LEFT JOIN art_types ON art_types.typeid = art.typeid WHERE art.art_id = ${id};`);
   return rows;
 }
 
@@ -73,4 +73,12 @@ async function deleteArt(id) {
   await pool.query(`DELETE FROM art WHERE art.art_id = ${id}`)
 }
 
-module.exports = {getAll, getArtist, getType, createArtist, createType, getAllArtists, getAllTypes, createArt, getArt, updateArt, deleteArt}
+async function deleteArtist(id) {
+  await pool.query(`DELETE FROM artists WHERE artists.artistid = ${id}`)
+}
+
+async function deleteType(id) {
+  await pool.query(`DELETE FROM art_types WHERE art_types.typeid = ${id}`)
+}
+
+module.exports = {getAll, getArtist, getType, createArtist, createType, getAllArtists, getAllTypes, createArt, getArt, updateArt, deleteArt, deleteArtist, deleteType}

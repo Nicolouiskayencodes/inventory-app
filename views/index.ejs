@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
   <title>Art Gallery</title>
 </head>
 <body>
@@ -11,6 +12,22 @@
     <button><a href="/newArtist">Add Artist</a></button>
     <button><a href="/newType">Add Artistic Medium</a></button>
   </nav>
+  <div class="dropdown">
+    <button class="dropbtn">Sort by Artist</button>
+    <div class="dropdown-content">
+     <%artists.forEach(artist=>{ %>
+      <a href="/artist/<%=artist.artistid%>"><%=artist.artist_name%></a>
+    <% }) %>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Sort by Type</button>
+    <div class="dropdown-content">
+     <%types.forEach(type=>{ %>
+      <a href="/type/<%=type.typeid%>"><%=type.type_name%></a>
+    <% }) %>
+    </div>
+  </div>
   <ul>
     <% artList.forEach(piece => { %>
       <%- include('piece', {title: piece.art_name, created: piece.created, price: piece.price, image: piece.image, artist: piece.artist_name, type: piece.type_name, artistid: piece.artistid, typeid: piece.typeid, id: piece.art_id})%>

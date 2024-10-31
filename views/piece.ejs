@@ -2,7 +2,9 @@
   <% if (image!==null && image!=='') { %>
     <img src=<%= image %>/>
   <%}%>
+  <% if (id) {%>
   <a href="/open/<%= id %>"><h2><%= title%></h2></a>
+  <% } %>
   <% if (artist) { %>
     <p>Artist: <a href='/artist/<%= artistid%>'><%= artist %></a></p>
   <% } %>
@@ -15,5 +17,7 @@
   <% if (type) { %>
     <p>Medium: <a href="/type/<%= typeid%>"><%= type %></a></p>
   <% }%>
+  <% if (id) {%>
   <button><a href='/update/<%= id%>'>Update</a></button>
+  <% } %>
 </li>

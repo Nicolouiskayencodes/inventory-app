@@ -157,4 +157,47 @@ const deleteArt = [
   }
 ]
 
-module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt, updateForm, updatePiece, openArt, deleteConfirm, deleteArt}
+async function deleteArtistConfirm(req, res) {
+  const artist = await db.getArtist(req.params.id)
+  const copyID = req.params.id;
+  res.render('deleteartist', {artist: artist[0], id: copyID})
+}
+
+async function deleteTypeConfirm(req, res) {
+  const type = await db.getType(req.params.id)
+  const copyID = req.params.id;
+  res.render('deletetype', {type: type[0], id: copyID})
+}
+
+const deleteArtist = [
+  validatePassword,
+  async function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const artist = await db.getArtist(req.params.id)
+      return res.status(400).render("deleteartist", {
+        errors: errors.array(), artist: artist[0], id: req.params.id
+      });
+    }
+    await db.deleteArtist(req.params.id)
+    res.redirect('/')
+  }
+]
+
+const deleteType = [
+  validatePassword,
+  async function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const type = await db.getType(req.params.id)
+      return res.status(400).render("deletetype", {
+        errors: errors.array(), type: type[0], id: req.params.id
+      });
+    }
+    await db.deleteType(req.params.id)
+    res.redirect('/')
+  }
+]
+
+
+module.exports = {artistForm, createArtist, typeForm, createType, artForm, createArt, updateForm, updatePiece, openArt, deleteConfirm, deleteArt, deleteArtistConfirm, deleteTypeConfirm, deleteArtist, deleteType}

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
   <title>Update <% piece.art_name%></title>
 </head>
 <body>
@@ -38,7 +39,11 @@
       </select>
     </label>
     <label>Created: 
-      <input name="created" type="date" value="<%= piece.created %>">
+      <% if (piece.created) { %>
+      <input name="created" type="date" value="<%= piece.created.toISOString().split('T')[0] %>">
+      <% } else { %>
+        <input name="created" type="date" >
+      <% } %>
     </label>
     <label>Price: 
       <input name="price" type="number" value="<%= piece.price %>">
