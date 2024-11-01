@@ -2,10 +2,6 @@ const { Client } = require('pg');
 require('dotenv').config()
 
 const SQL = `
-DROP TABLE art;
-DROP TABLE artists;
-DROP TABLE art_types;
-
 CREATE TABLE IF NOT EXISTS art_types (
 typeid INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 type_name VARCHAR NOT NULL,
