@@ -38,7 +38,7 @@ async function createArt(name, created, price, image, artistid, typeid) {
   let valcreated = null;
   let valprice = null;
   if (image!=='') {
-    valimage = image
+    valimage = `'${image}'`
   }
   if (created !==''){
     valcreated = `'${created}'`
@@ -59,7 +59,7 @@ async function updateArt(art_id, name, created, price, image, artistid, typeid) 
   let valcreated = null;
   let valprice = null;
   if (image!=='') {
-    valimage = image
+    valimage = `'${image}'`
   }
   if (created !==''){
     valcreated = `'${created}'`
