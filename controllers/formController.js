@@ -111,13 +111,15 @@ async function updateForm(req, res) {
 
 const updatePiece = [
   validateArt,
+  validatePassword,
   async function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      const art_piece = await db.getArt(req.params.id)
       const artists = await db.getAllArtists();
   const types = await db.getAllTypes();
-      return res.status(400).render("artForm", {
-        errors: errors.array(), artists: artists, types: types,
+      return res.status(400).render("updateForm", {
+        errors: errors.array(), artists: artists, types: types, piece:art_piece[0]
       });
     }
   const art_id = req.params.id;
